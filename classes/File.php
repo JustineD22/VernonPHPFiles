@@ -5,19 +5,40 @@ class File {
     private string $method;
     private int $size = 0;
     private $handle;
+    private array $arrayMethod = array("r" , "r+" , "w", "w+", "a", "a+", "x", "x+", "c", "c+", "e");
 
     function __construct(string $file, string $method)
     {
         $this->file =$file;
-        $this->method = $method;
-        $this->handle = fopen($this->file, $this->method);
-        $this->size = filesize($this->file);
-
+        if(in_array($method, $this->arrayMethod)) {
+            $this->method = $method;
+            if ($this->handle = fopen($this->file, $this->method)) {
+            $this->size = filesize($this->file); 
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
     }
 
-    function lecture($size = null)
+    function lecture(int $sizeParam = null)
     {
-        return fread($this->handle, $size ?? $this->size);
+        if ($sizeParam !== null) {
+            $sizeParam = abs($sizeParam);
+        }
+
+        if($sizeParam > 0 && $sizeParam <= $this->size) {
+            return fread($this->handle, $sizeParam); 
+        }
+        elseif ($sizeParam === null || $sizeParam > $this->size || $sizeParam === 0) {
+            return fread($this->handle, $this->size);
+        }
+        else {
+            return false;
+        }
     }
 
     function __destruct()

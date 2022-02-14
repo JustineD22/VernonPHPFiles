@@ -25,5 +25,5 @@ fclose($handle);
 
 var_dump($contents);
 
-$test = new File("./files/corbeau.txt", "r");
-var_dump($test->lecture());
+// $test = new File("./files/corbeau.txt", "r");
+// var_dump($test->lecture());
