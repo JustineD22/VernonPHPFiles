@@ -24,3 +24,6 @@ $contents = fread($handle, filesize($filename));
 fclose($handle);
 
 var_dump($contents);
+
+$test = new File("./files/corbeau.txt", "r");
+var_dump($test->lecture());
