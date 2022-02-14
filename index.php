@@ -1,4 +1,7 @@
 <?php
+spl_autoload_register(function ($className) {
+    include './classes' .$className .'.php';
+});
 
 $fichier = file('./files/corbeau.txt');
 
@@ -12,3 +15,12 @@ for ($i = 0 ; $i < count($fichier) ; $i++) {
 $fable .= "</blockquote>";
 
 echo $fable;
+
+echo "<hr>";
+
+$filename = "./files/corbeau.txt";
+$handle = fopen($filename, "r");
+$contents = fread($handle, filesize($filename));
+fclose($handle);
+
+var_dump($contents);
