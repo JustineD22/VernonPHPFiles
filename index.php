@@ -21,7 +21,17 @@ echo "<hr>";
 $filename = "./files/corbeau.txt";
 $handle = fopen($filename, "r");
 $contents = fread($handle, filesize($filename));
+$handle = fopen($filename, "rb");
+
+while (!feof($handle)) {
+    $ligne = fgets($handle);
+    echo "Ligne : " . $ligne . " - Valeur point : " . ftell($handle) . "<br/>";
+}
+
+echo "<hr>";
 fclose($handle);
+
+
 
 var_dump($contents);
 
