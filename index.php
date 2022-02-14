@@ -7,7 +7,11 @@ $fichier = fopen('./files/ecriture.txt', 'c+b');
 
 fwrite($fichier, "ligne de  comm");
 
+Log::write('coucou');
+
 fclose($fichier);
+
+
 
 
  //Ajout Ecriture
