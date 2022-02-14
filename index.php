@@ -1,6 +1,14 @@
 <?php
 
-$fichier1 = file_get_contents('./files/corbeau.txt');
-echo "<pre>";
-echo $fichier1;
-echo "</pre>";
+$fichier = file('./files/corbeau.txt');
+
+$fable = "<blockquote>";
+
+for ($i = 0 ; $i < count($fichier) ; $i++) {
+    $fable .=$fichier[$i];
+    $fable .= "<br/>";
+}
+
+$fable .= "</blockquote>";
+
+echo $fable;
